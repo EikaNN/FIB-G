@@ -26,7 +26,7 @@ void main()
 {
     vec3 Pworld = vertex.xyz;
     Nworld = normal;   
-    Vworld = (modelViewMatrixInverse*vec4(0,0,0,1)).xyz - Pworld;
+    Vworld = (modelViewMatrixInverse[3]).xyz - Pworld;
     Lworld = (modelViewMatrixInverse*lightPosition).xyz - Pworld;
     
     vec3 Peye = (modelViewMatrix * vec4(vertex.xyz, 1.0)).xyz; 
