@@ -27,7 +27,12 @@ void main()
 
     float y = vertex.y;
     if (eyespace) {
-        y = dot(modelViewMatrix[][1], vec4(vertex, 1.0));
+        vec4 row = vec4(modelViewMatrix[0][1], 
+                        modelViewMatrix[1][1], 
+                        modelViewMatrix[2][1], 
+                        modelViewMatrix[3][1]
+                    );
+        y = dot(row, vec4(vertex, 1.0));
     }
     
     
