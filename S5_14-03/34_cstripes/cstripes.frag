@@ -11,7 +11,7 @@ uniform vec2 origin = vec2(0,0);
 
 void main()
 {
-    float l = length(vec2(vtexCoord.s,vtexCoord.t) - origin);
+    float l = length(vtexCoord - origin);
     
     if (mod(l*nstripes, 2) < 1) fragColor = RED;
     else fragColor = YELLOW;
