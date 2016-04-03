@@ -2,23 +2,14 @@
 
 layout (location = 0) in vec3 vertex;
 layout (location = 1) in vec3 normal;
-layout (location = 2) in vec3 color;
-layout (location = 3) in vec2 texCoord;
 
 out vec4 frontColor;
-out vec2 vtexCoord;
 
 uniform mat4 modelMatrix;
 uniform mat4 viewMatrix;
 uniform mat4 projectionMatrix;
 uniform mat4 modelViewMatrix;
 uniform mat4 modelViewProjectionMatrix;
-
-uniform mat4 modelMatrixInverse;
-uniform mat4 viewMatrixInverse;
-uniform mat4 projectionMatrixInverse;
-uniform mat4 modelViewMatrixInverse;
-uniform mat4 modelViewProjectionMatrixInverse;
 
 uniform mat3 normalMatrix;
 
@@ -47,16 +38,18 @@ vec4 Blinn_Phong(vec3 N, vec3 L, vec3 V)
 
 void main()
 {
-    //vec3 N = normalize(normalMatrix * normal);
-    vec3 N = normalMatrix * normal;
-    //vec3 V = normalize(-modelViewMatrix * vec4(vertex, 1.0)).xyz;
+    vec3 Neye = normalMatrix * normal;
+
+    // V és el vector del vèrtex cap a la càmera, aquí valor per defecte de OpenGL
     vec3 V = vec3(0.0, 0.0, 1.0);
-    vec3 P = (modelViewMatrix * vec4(vertex, 1.0)).xyz;
-    vec3 L = lightPosition.xyz - P;
 
-    frontColor = Blinn_Phong(N, L, V);
+    // Peye és la posició del vèrtex
+    vec3 Peye = (modelViewMatrix * vec4(vertex, 1.0)).xyz;
 
-    vtexCoord = texCoord;
+    // L és el vector del vèrtex cap a la font de llum
+    vec3 Leye = lightPosition.xyz - Peye;
+
+    frontColor = Blinn_Phong(Neye, Leye, V);
 
     gl_Position = modelViewProjectionMatrix * vec4(vertex, 1.0);
 }

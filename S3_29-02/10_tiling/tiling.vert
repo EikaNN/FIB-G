@@ -12,7 +12,6 @@ uniform mat3 normalMatrix;
 
 uniform int tiles = 2;
 
-
 void main()
 {
     vtexCoord = texCoord * tiles;

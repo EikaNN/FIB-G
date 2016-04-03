@@ -6,7 +6,6 @@ layout (location = 2) in vec3 color;
 layout (location = 3) in vec2 texCoord;
 
 out vec4 frontColor;
-out vec2 vtexCoord;
 
 uniform mat4 modelViewProjectionMatrix;
 uniform mat3 normalMatrix;
@@ -17,7 +16,6 @@ uniform vec2 Max = vec2(1, 1);
 void main()
 {
     frontColor = vec4(color,1.0);
-    vtexCoord = texCoord;
 
     float x = 2*(texCoord.s - Min.x) / abs(Max.x - Min.x);     
     float y = 2*(texCoord.t - Min.y) / abs(Max.y - Min.y);

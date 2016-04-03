@@ -8,5 +8,5 @@ uniform sampler2D colorMap;
 
 void main()
 {
-    fragColor = frontColor * texture(colorMap, vtexCoord);
+    fragColor = frontColor*texture(colorMap, vtexCoord);
 }
