@@ -13,7 +13,8 @@ uniform vec3 boundingBoxMin;
 const vec4 BLACK = vec4(0, 0, 0, 1);
 const vec4 CYAN = vec4(0, 1, 1, 1);
 
-void drawFloor() {
+void drawFloor()
+{
     float R = distance(boundingBoxMin, boundingBoxMax)/2.0;
     vec3 C = (boundingBoxMin + boundingBoxMax)/2.0;
     C.y = boundingBoxMin.y-0.01;
@@ -38,20 +39,20 @@ void drawFloor() {
     EndPrimitive();  
 }
 
-void main( void ) {
-    
-    if (gl_PrimitiveIDIn == 0) {
-        drawFloor();
-    }
+void main( void ) 
+{    
+    if (gl_PrimitiveIDIn == 0) drawFloor();
 
-    for(int i = 0 ; i < 3 ; i++) {
+    for(int i = 0 ; i < 3 ; i++) 
+    {
         gfrontColor = vfrontColor[i];
         gl_Position = modelViewProjectionMatrix*gl_in[i].gl_Position;
         EmitVertex();
     }
     EndPrimitive();
 
-    for(int i = 0 ; i < 3 ; i++) {
+    for(int i = 0 ; i < 3 ; i++) 
+    {
         gfrontColor = BLACK;
         vec4 Pobj = gl_in[i].gl_Position;
         Pobj.y = boundingBoxMin.y;
@@ -59,6 +60,5 @@ void main( void ) {
         EmitVertex();
     }
     EndPrimitive();
-
 }
 

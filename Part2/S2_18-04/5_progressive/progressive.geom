@@ -12,6 +12,7 @@ uniform float time;
 void main( void )
 {
     if (gl_PrimitiveIDIn > time*100) return;
+
 	for(int i = 0 ; i < 3 ; ++i)
 	{
 		gfrontColor = vfrontColor[i];

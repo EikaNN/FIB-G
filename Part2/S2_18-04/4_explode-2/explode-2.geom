@@ -18,13 +18,14 @@ void main( void )
 {
     vec3 averageN = (vnormalObj[0] + vnormalObj[1] + vnormalObj[2])/3;
     vec3 averageB = (gl_in[0].gl_Position.xyz +
-                     gl_in[0].gl_Position.xyz +
-                     gl_in[0].gl_Position.xyz)/3;
+                     gl_in[1].gl_Position.xyz +
+                     gl_in[2].gl_Position.xyz)/3;
 
     float theta = angSpeed*time;
     mat3 Rz = mat3 (vec3(cos(theta), sin(theta), 0),
                     vec3(-sin(theta), cos(theta), 0),
-                    vec3(0, 0, 1)); 
+                    vec3(0, 0, 1));
+ 
 	for(int i = 0 ; i < 3 ; ++i)
 	{
 		gfrontColor = vfrontColor[i];
